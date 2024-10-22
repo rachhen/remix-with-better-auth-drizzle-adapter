@@ -3,7 +3,7 @@ services:
     name: remix
     env: node
     plan: free
-    buildCommand: npm ci --production=false && npm run build && npm prune --production
+    buildCommand: bun install && bun run build && bun install --ci
     startCommand: bunx drizzle-kit push
     healthCheckPath: /healthcheck
     envVars:
