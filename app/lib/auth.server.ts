@@ -23,10 +23,24 @@ export const auth = betterAuth({
     schema,
     // usePlural: true,
   }),
+  emailVerification: {
+    sendOnSignUp: true,
+    async sendVerificationEmail(user, url) {
+      console.log("Sending verification email to", user.email);
+      const res = await resend.emails.send({
+        from,
+        to: to || user.email,
+        subject: "Verify your email address",
+        html: `<a href="${url}">Verify your email address</a>`,
+      });
+      console.log(res, user.email);
+    },
+  },
   emailAndPassword: {
     enabled: true,
     sendEmailVerificationOnSignUp: true,
-    async sendResetPassword(url, user) {
+    requireEmailVerification: true,
+    async sendResetPassword(user, url) {
       await resend.emails.send({
         from,
         to: user.email,
@@ -36,16 +50,6 @@ export const auth = betterAuth({
           resetLink: url,
         }),
       });
-    },
-    async sendVerificationEmail(url, user) {
-      console.log("Sending verification email to", user.email);
-      const res = await resend.emails.send({
-        from,
-        to: to || user.email,
-        subject: "Verify your email address",
-        html: `<a href="${url}">Verify your email address</a>`,
-      });
-      console.log(res, user.email);
     },
   },
   socialProviders: {
