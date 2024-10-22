@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: remix
+    env: node
+    plan: free
+    buildCommand: npm ci --production=false && npm run build && npm prune --production
+    startCommand: bunx drizzle-kit push
+    healthCheckPath: /healthcheck
+    envVars:
+      - key: BETTER_AUTH_SECRET
+        generateValue: true
+      - key: NODE_ENV #required so NODE_ENV is set in build env
+        value: production
