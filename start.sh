@@ -5,5 +5,5 @@
 # run, which is why this file exists in the first place.
 # Learn more: https://community.fly.io/t/sqlite-not-getting-setup-properly/4386
 
-bunx bunx drizzle-kit push --force
+bunx bunx drizzle-kit push 
 bun run start
