@@ -46,6 +46,7 @@ app.use(morgan("tiny"));
 app.all("*", remixHandler);
 
 const port = process.env.PORT || 3000;
-app.listen(port, () =>
-  console.log(`Express server listening at http://localhost:${port}`)
+const host = process.env.HOST || "localhost";
+app.listen(port, host, () =>
+  console.log(`Express server listening at http://${host}:${port}`)
 );

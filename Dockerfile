@@ -41,6 +41,7 @@ FROM base
 COPY --from=build /app /app
 
 ARG PORT=8080
+ARG HOST=0.0.0.0
 # Start the server by default, this can be overwritten at runtime
 EXPOSE ${PORT}
 # CMD [ "bun", "run", "start" ]
