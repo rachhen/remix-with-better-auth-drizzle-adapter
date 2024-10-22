@@ -43,5 +43,5 @@ COPY --from=build /app /app
 ARG PORT=8080
 # Start the server by default, this can be overwritten at runtime
 EXPOSE ${PORT}
-CMD [ "bun", "run", "start" ]
-# ENTRYPOINT [ "./start.sh" ]
+# CMD [ "bun", "run", "start" ]
+ENTRYPOINT [ "./start.sh" ]
